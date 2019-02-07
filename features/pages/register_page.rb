@@ -14,16 +14,16 @@ class RegisterPage < SitePrism::Page
 
   def registerUser(gender, _firstName, _lastName, _password, _phone, _address, state, _postCode)
     choose gender
-    fill_in(firstName, :with => _firstName)
-    fill_in(lastName, :with => _lastName)
-    fill_in(password, :with => _password)
+    firstName.set _firstName
+    lastName.set _lastName
+    password.set _password
     select '1', from: :days, visible: false, match: :first
     select 'January', from: :months, visible: false
     select '1980', from: :years, visible: false
-    fill_in(address, :with => _address)
-    fill_in(city, :with => 'Washington')
+    address.set _address
+    city.set 'Washington'
     select state, from: :id_state, visible: false
-    fill_in(postCode, :with => _postCode)
-    fill_in(:phone_mobile, :with => _phone)
+    postCode.set _postCode
+    phone_mobile.set _phone
   end
 end

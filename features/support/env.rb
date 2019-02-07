@@ -1,5 +1,6 @@
 require 'capybara'
 require 'capybara/dsl'
+require 'capybara/cucumber'
 require 'site_prism'
 
 ENVIRONMENT_TYPE = ENV['ENVIRONMENT_TYPE']
