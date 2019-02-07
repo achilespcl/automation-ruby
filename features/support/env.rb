@@ -2,6 +2,9 @@ require 'capybara'
 require 'capybara/dsl'
 require 'capybara/cucumber'
 require 'site_prism'
+require_relative 'page_helper.rb'
+
+World(Pages)
 
 ENVIRONMENT_TYPE = ENV['ENVIRONMENT_TYPE']
 

@@ -1,5 +1,9 @@
 World(Helper)
 
+After('@login') do
+  account.log_out
+end
+
 # depois de cada cenario ele tira um print e remove todos os espacos virgulas
 After do |scenario|
     scenario_name = clearString(scenario);
