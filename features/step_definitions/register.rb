@@ -4,30 +4,28 @@ Dado("que acesso a página de registro de usuário") do
    visit 'http://automationpractice.com/index.php?controller=authentication&back=my-account'
 end
 
-E("insiro um email") do
-    fill_in('email_create', :with => 'kara4757@gmail.com')
+E("insiro um {string}") do |email|
+    fill_in('email_create', :with => email)
     click_button 'Create an account'
 end
 
-Quando("preencho o formulário de cadastro com os dados do usuário") do
+Quando("preencho o formulário de cadastro com os dados do usuário {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}") do |gender, firstName, lastName, password, phone, address, state, postalCode|
     expect(page).to have_content('CREATE AN ACCOUNT')
-    choose 'Mr.'
-    fill_in('customer_firstname', :with => 'Barrabás')
-    fill_in('customer_lastname', :with => 'Barrabás')
-    fill_in('passwd', :with => '12345')
+    choose gender
+    fill_in('customer_firstname', :with => firstName)
+    fill_in('customer_lastname', :with => lastName)
+    fill_in('passwd', :with => password)
     select '1', from: :days, visible: false, match: :first
     select 'January', from: :months, visible: false
     select '1980', from: :years, visible: false
-    fill_in('address1', :with => 'Rua dos 3 Poderes')
+    fill_in('address1', :with => address)
     fill_in('city', :with => 'Washington')
-    select 'Alabama', from: :id_state, visible: false
-    fill_in('postcode', :with => '00000')
-    fill_in('phone_mobile', :with => '123456798')
+    select state, from: :id_state, visible: false
+    fill_in('postcode', :with => postalCode)
+    fill_in('phone_mobile', :with => phone)
     click_button 'Register'
 end
   
-Então("vejo a mensagem {string}") do |message|
+Então("vejo a seguinte {string}") do |message|
     page.should have_content(message)
 end
-  
-  
